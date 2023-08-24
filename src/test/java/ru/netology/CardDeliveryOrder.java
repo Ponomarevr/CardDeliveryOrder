@@ -18,8 +18,10 @@ class CardDeliveryOrder {
     }
 
     @Test
-    void shouldCorrectFill() {
+    void shouldCorrectFill() throws InterruptedException {
         open("http://localhost:9999");
+
+        Thread.sleep(2000);
 
         String planningDate = generateDate(4, "dd.MM.yyyy");
 
@@ -35,6 +37,7 @@ class CardDeliveryOrder {
         $(".notification__content")
                 .shouldHave(Condition.text("Встреча успешно забронирована на " + planningDate), Duration.ofSeconds(13))
                 .shouldBe(Condition.visible);
+        Thread.sleep(5000);
 
     }
 }
